@@ -164,7 +164,7 @@ def recomendaciones(usuario_nombre: str):
     for _, alimento in foods_df.iterrows():
         enfermedades_alimento = alimento["Enfermedades"].split(",")
         # Verificar si alguna de las enfermedades del usuario se encuentra en el alimento
-        if any(enf in enfermedades_usuario for enf in enfermedades_alimento):
+        if any(enf.lower() in (e.lower() for e in enfermedades_alimento) for enf in enfermedades_usuario):
             alimentos_recomendados.append({
                 "Alimento": alimento["Alimento"],
                 "Propiedades": alimento["Propiedades"],
